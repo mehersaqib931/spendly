@@ -26,6 +26,16 @@ def login():
 # Placeholder routes — students will implement these                  #
 # ------------------------------------------------------------------ #
 
+@app.route("/privacy-policy")
+def privacy_policy():
+    return render_template("privacy_policy.html")
+
+
+@app.route("/terms-and-conditions")
+def terms_and_conditions():
+    return render_template("terms_and_conditions.html")
+
+
 @app.route("/logout")
 def logout():
     return "Logout — coming in Step 3"
