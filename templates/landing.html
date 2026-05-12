@@ -17,7 +17,7 @@
         </p>
         <div class="hero-actions">
             <a href="{{ url_for('register') }}" class="btn-primary">Create free account</a>
-            <a href="#features" class="btn-primary">See how it works</a>
+            <a href="#features" id="btn-how-it-works" class="btn-primary">See how it works</a>
         </div>
     </div>
     <div class="hero-mockup">
@@ -101,4 +101,45 @@
     </div>
 </section>
 
+<div id="video-modal" class="video-overlay">
+    <div class="video-card">
+        <button id="video-close" class="video-close" aria-label="Close video">&times;</button>
+        <iframe id="video-iframe" src="" frameborder="0"
+            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+    var btn      = document.getElementById('btn-how-it-works');
+    var overlay  = document.getElementById('video-modal');
+    var iframe   = document.getElementById('video-iframe');
+    var closeBtn = document.getElementById('video-close');
+    var VIDEO_URL = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+
+    function openModal() {
+        iframe.src = VIDEO_URL;
+        overlay.classList.add('is-open');
+    }
+
+    function closeModal() {
+        iframe.src = '';
+        overlay.classList.remove('is-open');
+    }
+
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal();
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeModal();
+    });
+}());
+</script>
 {% endblock %}
